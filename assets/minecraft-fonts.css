@@ -1,0 +1,38 @@
+@font-face {
+  font-family: 'MinecraftiaRegular';
+      src: url('../static/fonts/MinecraftiaRegular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+    }
+
+@font-face {
+  font-family: 'Minecraftia';
+      src: url('../static/fonts/MinecraftiaRegular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+    }
+
+@font-face {
+  font-family: 'MineCrafter3Regular';
+      src: url('../static/fonts/MineCrafter3Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+    }
+
+/* The following rules are deprecated. */
+@font-face {
+  font-family: 'MineCrafter 3';
+      src: url('../static/fonts/MineCrafter3Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+    }
+
+@font-face {
+  font-family: "Minecraft";
+  font-style: normal;
+  font-weight: 400;
+  src: url("https://cdn.jsdelivr.net/gh/nailujx86/Minecraft-Webfont-and-Colors@v1.0/font/minecraft_font.woff") format("woff"),
+      url("https://cdn.jsdelivr.net/gh/nailujx86/Minecraft-Webfont-and-Colors@v1.0/font/minecraft_font.eot") format("eot"),
+      url("https://cdn.jsdelivr.net/gh/nailujx86/Minecraft-Webfont-and-Colors@v1.0/font/minecraft_font.ttf") format("truetype"),
+      url("https://cdn.jsdelivr.net/gh/nailujx86/Minecraft-Webfont-and-Colors@v1.0/font/minecraft_font.svg#Minecraft") format("svg");
+}
