@@ -39,7 +39,7 @@ events.on('playerlogin', function (player) {
     'embeds': [{
       'title': `**${player.name}** joined the server !`,
       'image': {
-        'url': 'https://minotar.net/bust/DocteurZoidberg/100.png'
+        'url': `https://minotar.net/bust/${player.name}/100.png`
       }
     }]
   })
@@ -51,7 +51,7 @@ events.on('playerlogout', function (player) {
     'embeds': [{
       'title': `**${player.name}** left the server`,
       'image': {
-        'url': 'https://minotar.net/bust/DocteurZoidberg/100.png'
+        'url': `https://minotar.net/bust/${player.name}/100.png`
       }
     }]
   })

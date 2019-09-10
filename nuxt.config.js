@@ -59,7 +59,6 @@ module.exports = {
     /*
     ** You can extend webpack config here
     */
-    vendor: ['mcmotdparser'],
     extend (config, ctx) {
     }
   }
