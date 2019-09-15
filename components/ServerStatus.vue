@@ -39,6 +39,7 @@
 </style>
 
 <script>
+import socket from '~/plugins/socketio'
 import mcmotdparser from '~/plugins/mcmotdparser'
 import ServerStatusPlayer from '~/components/ServerStatusPlayer'
 
@@ -52,6 +53,12 @@ export default {
       status: false,
       timer: null
     }
+  },
+  mounted () {
+    socket.on('status', function (data) {
+      console.log('Socket event:')
+      console.dir(data)
+    })
   },
   created () {
     this.timer = setInterval(this.fetchStatus, 5 * 1000)

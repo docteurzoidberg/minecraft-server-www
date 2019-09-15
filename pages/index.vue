@@ -23,8 +23,7 @@
           >
             Join server
           </a>
-          <nuxt-link to="/map" target="_blank" class="button--white" >Map</nuxt-link>
-
+          <nuxt-link to="/map" target="_blank" class="button--white">Map</nuxt-link>
         </div>
       </div>
       <div>

@@ -30,7 +30,8 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    { src: '~plugins/mcmotdparser', ssr: false }
+    { src: '~plugins/mcmotdparser', ssr: false },
+    { src: '~plugins/socketio', ssr: false }
   ],
   /*
   ** Nuxt.js dev-modules
@@ -44,7 +45,8 @@ module.exports = {
   */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '~/io'
   ],
   /*
   ** Axios module configuration
