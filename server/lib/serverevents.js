@@ -8,7 +8,7 @@ let lastRunning = null
 let lastPlayers = null
 let interval = null
 
-function checkPlayerLoggedIn (player) {
+function checkPlayerLoggedIn (status, player) {
   // 1: verifier si le player etait present le dernier coup?
   let found = false
   lastPlayers.forEach(function (lastPlayer) {
@@ -21,10 +21,11 @@ function checkPlayerLoggedIn (player) {
   if (!found) {
     // 2: il n'existait pas: event player connecte!
     eventEmitter.emit('playerlogin', player)
+    eventEmitter.emit('status', status)
   }
 }
 
-function checkPlayerLoggedOut (lastplayer, newplayers) {
+function checkPlayerLoggedOut (status, lastplayer, newplayers) {
   // 1: verifier si le lastplayer n'est plus present
   let found = false
   newplayers.forEach(function (newplayer) {
@@ -36,6 +37,7 @@ function checkPlayerLoggedOut (lastplayer, newplayers) {
   })
   if (!found) {
     eventEmitter.emit('playerlogout', lastplayer)
+    eventEmitter.emit('status', status)
   }
 }
 
@@ -45,7 +47,8 @@ function getStatus () {
     if (err) {
       if (err.code === 'ECONNREFUSED') {
         if (lastRunning === true) {
-          eventEmitter.emit('serverstop')
+          eventEmitter.emit('serverstop', status)
+          eventEmitter.emit('status', status)
           lastPlayers = null
         }
         lastRunning = false
@@ -54,7 +57,8 @@ function getStatus () {
       }
     } else if (status) {
       if (lastRunning === false) {
-        eventEmitter.emit('serverstart')
+        eventEmitter.emit('serverstart', status)
+        eventEmitter.emit('status', status)
       }
       lastRunning = true
     }
@@ -86,13 +90,13 @@ function getStatus () {
     if (status.players.sample) {
       // console.log('got players!')
       // 1: on verifie chaque eventuel nouveau joueur ds la liste
-      status.players.sample.map(checkPlayerLoggedIn)
+      status.players.sample.map(function (player) { checkPlayerLoggedIn(status, player) })
     } else {
       status.players.sample = []
     }
 
     // 2: maintenant on verifie chaque joueur eventuellement manquant dans la liste
-    lastPlayers.map(function (lastPlayer) { checkPlayerLoggedOut(lastPlayer, status.players.sample) })
+    lastPlayers.map(function (lastPlayer) { checkPlayerLoggedOut(status, lastPlayer, status.players.sample) })
     lastPlayers = status.players.sample
   })
 }

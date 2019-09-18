@@ -8,7 +8,7 @@
       </div>
     </div>
     <div v-if="status">
-      <div v-if="status.players.sample">
+      <div v-if="status.players.sample && status.players.sample.length > 0">
         Joueurs connect&eacute;s:
         <div class="players">
           <ServerStatusPlayer v-for="player in status.players.sample" :key="player.id" :player="player" />
@@ -55,26 +55,15 @@ export default {
     }
   },
   mounted () {
+    const self = this
     socket.on('status', function (data) {
       console.log('Socket event:')
       console.dir(data)
+      self.status = data
+      self.parseMotd()
     })
   },
-  created () {
-    this.timer = setInterval(this.fetchStatus, 5 * 1000)
-    this.fetchStatus()
-  },
-  beforeDestroy () {
-    clearInterval(this.timer)
-  },
   methods: {
-    async fetchStatus () {
-      this.status = await this.$axios.$get('api/status')
-      this.parseMotd()
-    },
-    cancelFetch () {
-      clearInterval(this.timer)
-    },
     parseMotd () {
       const self = this
       mcmotdparser.toHtml(self.status.description.text, (err, res) => {
