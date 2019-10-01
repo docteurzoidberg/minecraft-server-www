@@ -5,6 +5,9 @@
         <h1 class="title minecrafter">
           <logo />TPPTEK-NG
         </h1>
+        <h1 class="motd">
+          {{ randomMotd }}
+        </h1>
         <h2 class="subtitle minecraftia">
           The modpack
         </h2>
@@ -42,6 +45,25 @@ export default {
   components: {
     Logo,
     ServerStatus
+  },
+  data () {
+    let i = (Math.floor(Math.random() * 10)) % 5
+    console.log(i)
+    switch (i) {
+      case 0:
+        i++
+        return { randomMotd: 'Welcome to CubeLand' }
+      case 1:
+        return { randomMotd: 'Did you bring your cubes?' }
+      case 2:
+        return { randomMotd: 'Are you more survival fighter or creative artist?' }
+      case 3:
+        return { randomMotd: 'Once upon a cube...' }
+      case 4:
+        return { randomMotd: 'Battle for the Cubes !' }
+      default:
+        return { randomMotd: 'Welcome' }
+    }
   }
 }
 </script>
@@ -100,4 +122,13 @@ body {
 .links {
   padding-top: 15px;
 }
+
+.motd {
+  font-size: 45px;
+  color: #EDF54E;
+  font-family: 'MinecraftiaRegular';
+  font-weight: normal;
+  font-style: normal;
+}
+
 </style>
